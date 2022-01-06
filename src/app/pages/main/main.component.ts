@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
   }
 
   operator(operator:string){
-    if(this.temporary !='' && this.valueArray.length <2){
+    if(this.temporary !='' && this.valueArray.length <2 && this.temporary!='.'){
       this.valueArray.push(this.temporary)
       this.valueArray.push(operator)
       this.temporary=''
@@ -44,7 +44,7 @@ export class MainComponent implements OnInit {
 
   calculate(){
     let temp = ''
-    if(this.temporary != '' && this.valueArray.length ==2){
+    if(this.temporary != '' && this.valueArray.length ==2 && this.temporary!='.'){
         if (this.valueArray[1] == '/') this.total = parseFloat(this.valueArray[0]) / parseFloat(this.temporary)
         else if (this.valueArray[1]=='x') this.total = parseFloat(this.valueArray[0]) * parseFloat(this.temporary)
         else if (this.valueArray[1]=='-') this.total = parseFloat(this.valueArray[0]) - parseFloat(this.temporary)
@@ -63,6 +63,7 @@ export class MainComponent implements OnInit {
       count++
       if(count == this.temporary.length || this.temporary.length == 0) this.temporary+='.'
     }
+
     this.showProcessVisualization()
   }
 
