@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   total:number=0.00
+  currentData = new Date().getFullYear()
   @Input() title:string=''
   @Input() temporary:string=''
   @Input() ProcessUI:string=''
