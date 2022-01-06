@@ -38,9 +38,9 @@ export class MainComponent implements OnInit {
 
   calculate(){
     for(let i=0; this.numberArray.length >= i; i++){
+      console.log(this.numberArray)
       return
     }
-    console.log(this.numberArray)
   }
 
   //Show visualization
