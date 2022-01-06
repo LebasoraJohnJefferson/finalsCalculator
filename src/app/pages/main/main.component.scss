@@ -1,7 +1,85 @@
+.title{
+    width:90%;
+    height: 5rem;
+    margin: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-family: courier;
+    font-size: 2rem;
+    text-shadow: 0px 5px 5px rgba(20,20,20,.5),
+                1px 1px 1px rgba(20,20,20,.5),
+                1px 3px 1px rgba(20,20,20,.5);
+}
+
 table{
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    -webkit-filter: blur(.5px);
     tr{
+        max-width:500px;
         td{
+            width:150px;
+            font-size:14px;
+            font-weight: bold;
+            text-align: center;
             padding: 1rem;
+            border:none;
+            font-family: courier;
+            box-shadow: 20px 20px 10px rgba(20,20,20,.2),
+                        3px 5px 3px rgba(20,20,20,.2),
+                        5px 10px 3px rgba(20,20,20,.2),
+                        inset 0px 0px 5px rgba(20,20,20,1);
+        }
+        .clear{
+            width:125px;
+        }
+        .my_processUI{
+            width:375px;
+            .ProcessUI-container{
+                overflow: hidden;
+                width: 340px;
+            }
+        }
+        .my_total{
+            width:500px;
+        }
+    }
+    
+}
+
+.copy-rights{
+    position: fixed;
+    bottom:10px; left:0;
+    width:100%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.background{
+    width:100%;
+    height: 100vh;
+    position: fixed;
+    top:0; left:0;
+    z-index: -1;
+    background-image: linear-gradient(30deg,red,transparent,rgb(34, 25, 25));
+}
+
+@media only screen and (max-width:600px) {
+    table{
+        width:100vw;
+        overflow: hidden;
+        tr{
+            width:80vw;
+            .my_processUI{
+                width:100%;
+                .ProcessUI-container{
+                    overflow: hidden;
+                    width:100px;
+                }
+            }
         }
     }
 }

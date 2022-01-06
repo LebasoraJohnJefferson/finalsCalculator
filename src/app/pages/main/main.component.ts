@@ -6,75 +6,70 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  @Input() total:number=0
+  total:number=0.00
   @Input() title:string=''
-  @Input() temp:string=''
+  @Input() temporary:string=''
   @Input() ProcessUI:string=''
-  @Input() numberArray:any=[]
+  @Input() valueArray:any=[]
+  @Input() operatorArray = ['/','x','+','-']
   constructor() { 
-    
+    this.showProcessVisualization()
   }
 
   ngOnInit(): void {
   }
 
-  // the datatype of number is string to avoid miscalculation
-  // the incoming string will be added or pushed to the last part of the string
-  number(number:string){
-    this.temp += number
-    this.ShowProcessUI()
+  clear(){
+    this.temporary=''
+    this.valueArray=[]
+    this.showProcessVisualization()
   }
-  
-  //avoid pushing empty string and only . in numberArray
-  operation(operation:string){
-    if(this.temp!='' && this.temp != '.'){
-      this.numberArray.push(this.temp)
-      this.numberArray.push(operation)
+
+  operand(number:string){
+    this.temporary += number
+    this.showProcessVisualization()
+  }
+
+  operator(operator:string){
+    if(this.temporary !='' && this.valueArray.length <2){
+      this.valueArray.push(this.temporary)
+      this.valueArray.push(operator)
+      this.temporary=''
+    }else{
+      this.calculate()
     }
-    this.temp = ''
-    this.ShowProcessUI()
-    console.log(this.numberArray)
+    this.showProcessVisualization()
   }
 
   calculate(){
-    for(let i=0; this.numberArray.length >= i; i++){
-      console.log(this.numberArray)
-      return
+    let temp = ''
+    if(this.temporary != '' && this.valueArray.length ==2){
+        if (this.valueArray[1] == '/') this.total = parseFloat(this.valueArray[0]) / parseFloat(this.temporary)
+        else if (this.valueArray[1]=='x') this.total = parseFloat(this.valueArray[0]) * parseFloat(this.temporary)
+        else if (this.valueArray[1]=='-') this.total = parseFloat(this.valueArray[0]) - parseFloat(this.temporary)
+        else if (this.valueArray[1]=='+') this.total = parseFloat(this.valueArray[0]) + parseFloat(this.temporary)
+      temp = this.total.toString()
+      this.clear()
+      this.temporary = temp
+      this.showProcessVisualization()
     }
   }
 
-  //Show visualization
-  ShowProcessUI(){
-    this.ProcessUI = '' 
-    for(let i = 0 ; i <= this.numberArray.length ; i++){
-      if(this.numberArray[i] != undefined) this.ProcessUI += this.numberArray[i]
-    }
-    this.ProcessUI+=this.temp
-  }
-
-
-  //clear the visualization
-  clear(){
-    this.numberArray=[]
-    this.temp=''
-    this.ShowProcessUI()
-  }
-
-  percent(){
-    
-  }
-
-  priority(){
-  }
-
-
-  //placing the dot once to avoid miscalculation
-  dot(dot:string){
+  dot(){
     let count = 0
-    for(let i=0; this.temp.length >= i ; i++){
-      if(this.temp[i] == '.') break
-      count++;
-      if(count == this.temp.length || this.temp=='') this.temp+=dot
+    for (let i = 0 ; i <= this.temporary.length ; i++){
+      if(this.temporary[i] == '.') break
+      count++
+      if(count == this.temporary.length || this.temporary.length == 0) this.temporary+='.'
     }
+    this.showProcessVisualization()
+  }
+
+  showProcessVisualization(){
+    this.ProcessUI = ''
+    for(let i = 0 ; i < this.valueArray.length ; i++ ){
+      this.ProcessUI+= this.valueArray[i]
+    }
+    this.ProcessUI +=this.temporary
   }
 }

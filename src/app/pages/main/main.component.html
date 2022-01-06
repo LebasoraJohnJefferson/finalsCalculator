@@ -1,37 +1,38 @@
-<div>{{title}}</div>
-
-
+<div class='title'>{{title}}</div>
 <table>
-  <th>{{total}}</th>
-  <th>{{ProcessUI}}</th>
   <tr>
-    <td (click)='priority()'>(</td>
-    <td (click)='priority()'>)</td>
-    <td (click)='percent()'>%</td>
-    <td (click)='clear()'>AC</td>
+    <td colspan="4" class='my_total'>Ans:{{total}}</td>
   </tr>
   <tr>
-    <td (click)='number("7")'>7</td>
-    <td (click)='number("8")'>8</td>
-    <td (click)='number("9")'>9</td>
-    <td (click)='operation("/")'>/</td>
+    <td colspan="1" class='clear' (click)='clear()'>Clear</td>
+    <td colspan="3" class='my_processUI'><div class='ProcessUI-container'>{{ProcessUI}}</div></td>
   </tr>
   <tr>
-    <td (click)='number("4")'>4</td>
-    <td (click)='number("5")'>5</td>
-    <td (click)='number("6")'>6</td>
-    <td (click)='operation("X")'>X</td>
+    <td (click)='operand("7")'>7</td>
+    <td (click)='operand("8")'>8</td>
+    <td (click)='operand("9")'>9</td>
+    <td (click)='operator("/")'>/</td>
   </tr>
   <tr>
-    <td (click)='number("1")'>1</td>
-    <td (click)='number("2")'>2</td>
-    <td (click)='number("3")'>3</td>
-    <td (click)='operation("-")'>-</td>
+    <td (click)='operand("4")'>4</td>
+    <td (click)='operand("5")'>5</td>
+    <td (click)='operand("6")'>6</td>
+    <td (click)='operator("x")'>X</td>
   </tr>
   <tr>
-    <td (click)='number("0")'>0</td>
-    <td (click)='dot(".")'>.</td>
+    <td (click)='operand("1")'>1</td>
+    <td (click)='operand("2")'>2</td>
+    <td (click)='operand("3")'>3</td>
+    <td (click)='operator("-")'>-</td>
+  </tr>
+  <tr>
+    <td (click)='operand("0")'>0</td>
+    <td (click)='dot()'>.</td>
     <td (click)='calculate()'>=</td>
-    <td (click)='operation("+")'>+</td>
+    <td (click)='operator("+")'>+</td>
   </tr>
 </table>
+
+<div class='background'></div>
+
+<div class='copy-rights'>Basic Calculator-Copyright &copy; All Rights Reserved</div>
