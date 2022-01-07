@@ -50,15 +50,6 @@ export class MainComponent implements OnInit {
         else if (this.valueArray[1]=='x') this.total = parseFloat(this.valueArray[0]) * parseFloat(this.temporary)
         else if (this.valueArray[1]=='-') this.total = parseFloat(this.valueArray[0]) - parseFloat(this.temporary)
         else if (this.valueArray[1]=='+') this.total = parseFloat(this.valueArray[0]) + parseFloat(this.temporary)
-        if(this.total == Infinity){
-          this.isNotification = true;
-          this.clear()
-          this.total = 0
-          setTimeout(()=>{
-        this.isNotification = false
-          },2000)
-          return
-        }
         temp = this.total.toString()
         this.clear()
         this.temporary = temp
