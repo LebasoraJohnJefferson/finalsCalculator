@@ -59,7 +59,7 @@ export class MainComponent implements OnInit {
         return
     }
     else if(this.temporary == '0' && temp !='.') this.notify('Cannot be divided by 0')
-    else if(this.temporary.length > 0 && this.valueArray.length == 0 && temp != '.' ) this.total = parseInt(this.temporary)
+    else if(this.valueArray.length == 0 && this.temporary != '.' && this.temporary !='') this.total = parseFloat(this.temporary)
     else if(this.temporary == '' && this.valueArray.length == 0 ) this.notify('kindly input some value') 
     else this.notify('Syntax Error')
     this.temporary = ''
