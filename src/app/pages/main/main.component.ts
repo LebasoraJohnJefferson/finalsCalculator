@@ -60,6 +60,7 @@ export class MainComponent implements OnInit {
         return
     }
     else if(this.temporary == '0') this.notify('Cannot be divided by 0')
+    else if(this.temporary == '' && this.valueArray.length == 0) this.notify('kindly input some value') 
     else this.notify('Syntax Error')
     this.temporary = ''
     this.clear()
@@ -68,6 +69,7 @@ export class MainComponent implements OnInit {
 
   DividedByZero(temp:string){
     let calculate = 0
+    if(temp.length == 0) return ''
     for (let i = 0 ; i < temp.length ; i++){
       
       calculate += temp[i] == '.' ? 0 : parseInt(temp[i])
