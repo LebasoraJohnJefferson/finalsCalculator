@@ -54,7 +54,6 @@ export class MainComponent implements OnInit {
         this.clear()
         this.temporary = temp
         this.showProcessVisualization()
-        this.isNotification = true
     }else{
       this.isNotification = true;
       setTimeout(()=>{
