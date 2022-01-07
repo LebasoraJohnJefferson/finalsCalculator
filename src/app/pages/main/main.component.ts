@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   total:number=0.00
+  isNotification:boolean = false
   currentData = new Date().getFullYear()
   @Input() title:string=''
   @Input() temporary:string=''
@@ -53,6 +54,11 @@ export class MainComponent implements OnInit {
       this.clear()
       this.temporary = temp
       this.showProcessVisualization()
+    }else{
+      this.isNotification = true;
+      setTimeout(()=>{
+        this.isNotification = false
+      },2000)
     }
   }
 
