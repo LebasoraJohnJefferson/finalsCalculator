@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   total:number=0.00
+  notificationText:string = ''
   isNotification:boolean = false
   currentData = new Date().getFullYear()
   @Input() title:string=''
@@ -45,6 +46,8 @@ export class MainComponent implements OnInit {
 
   calculate(){
     let temp = ''
+    let temporary2 = this.DividedByZero(this.temporary);
+    this.temporary = temporary2.toString()
     if(this.temporary != '' && this.valueArray.length ==2 && this.temporary!='.' && this.temporary!='0'){
         if (this.valueArray[1] == '/') this.total = parseFloat(this.valueArray[0]) / parseFloat(this.temporary)
         else if (this.valueArray[1]=='x') this.total = parseFloat(this.valueArray[0]) * parseFloat(this.temporary)
@@ -54,12 +57,24 @@ export class MainComponent implements OnInit {
         this.clear()
         this.temporary = temp
         this.showProcessVisualization()
-    }else{
-      this.isNotification = true;
-      setTimeout(()=>{
-        this.isNotification = false
-      },2000)
+        return
     }
+    else if(this.temporary == '0') this.notify('Cannot be divided by 0')
+    else this.notify('Syntax Error')
+    this.temporary = ''
+    this.clear()
+    this.showProcessVisualization()
+  }
+
+  DividedByZero(temp:string){
+    let calculate = 0
+    for (let i = 0 ; i < temp.length ; i++){
+      
+      calculate += temp[i] == '.' ? 0 : parseInt(temp[i])
+
+    }
+    if (calculate == 0) return 0
+    else return temp
   }
 
   dot(){
@@ -79,5 +94,13 @@ export class MainComponent implements OnInit {
       this.ProcessUI+= this.valueArray[i]
     }
     this.ProcessUI +=this.temporary
+  }
+
+  notify(message:string){
+    this.notificationText = message
+    this.isNotification = true;
+    setTimeout(()=>{
+      this.isNotification = false
+    },2000)
   }
 }
