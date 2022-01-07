@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
   }
 
   calculate(){
-    let temp = ''
+    let temp = this.temporary
     let temporary2 = this.DividedByZero(this.temporary);
     this.temporary = temporary2.toString()
     if(this.temporary != '' && this.valueArray.length ==2 && this.temporary!='.' && this.temporary!='0'){
@@ -53,14 +53,14 @@ export class MainComponent implements OnInit {
         else if (this.valueArray[1]=='x') this.total = parseFloat(this.valueArray[0]) * parseFloat(this.temporary)
         else if (this.valueArray[1]=='-') this.total = parseFloat(this.valueArray[0]) - parseFloat(this.temporary)
         else if (this.valueArray[1]=='+') this.total = parseFloat(this.valueArray[0]) + parseFloat(this.temporary)
-        temp = this.total.toString()
         this.clear()
-        this.temporary = temp
+        this.temporary =''
         this.showProcessVisualization()
         return
     }
-    else if(this.temporary == '0') this.notify('Cannot be divided by 0')
-    else if(this.temporary == '' && this.valueArray.length == 0) this.notify('kindly input some value') 
+    else if(this.temporary == '0' && temp !='.') this.notify('Cannot be divided by 0')
+    else if(this.temporary.length > 0 && this.valueArray.length == 0 && temp != '.' ) this.total = parseInt(this.temporary)
+    else if(this.temporary == '' && this.valueArray.length == 0 ) this.notify('kindly input some value') 
     else this.notify('Syntax Error')
     this.temporary = ''
     this.clear()
