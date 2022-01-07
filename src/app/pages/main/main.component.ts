@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
 
   calculate(){
     let temp = ''
-    if(this.temporary != '' && this.valueArray.length ==2 && this.temporary!='.'){
+    if(this.temporary != '' && this.valueArray.length ==2 && this.temporary!='.' && this.temporary!='0'){
         if (this.valueArray[1] == '/') this.total = parseFloat(this.valueArray[0]) / parseFloat(this.temporary)
         else if (this.valueArray[1]=='x') this.total = parseFloat(this.valueArray[0]) * parseFloat(this.temporary)
         else if (this.valueArray[1]=='-') this.total = parseFloat(this.valueArray[0]) - parseFloat(this.temporary)
